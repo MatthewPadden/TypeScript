@@ -15,6 +15,7 @@ namespace | namespace
 module    | think of these like class libraries
 class     | class
 interface | interface
+gernerics |
 
 */
 
@@ -26,6 +27,7 @@ module Greetings {
         /* the use of public on arguments to the constructor is a shorthand
         that allows us to automatically create properties with that name */
         constructor(public firstName: string, public lastName: string) {
+            // we must use this so we do not reference global variables
             this.fullName = firstName + " " + lastName;
         }
     }
@@ -35,11 +37,13 @@ module Greetings {
         lastName: string;
     }
 
-    // function takes an IPerson and returns a string
+    /* function takes an IPerson and returns a string, if we left out specifying the
+    it would be infered as the method does return a string */
     function greeter(person: IPerson): string {
         return `Hello, ${person.firstName} ${person.lastName}`;
     }
 
+    // as long as this has the same properties as IPerson, it can be treated as such
     var user = { firstName: "Jane", lastName: "Doe" };
 
     var joe = new Student("Joe", "Doe");
