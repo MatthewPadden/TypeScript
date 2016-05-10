@@ -4,7 +4,7 @@ For more information, go to https://www.typescriptlang.org/docs/tutorial.html
 
 npm install -g typescript
 tsc greeter.ts (This will compile greeter.ts to .js)
-tsc --watch greeter.ts (This will watch the file and compile on save)
+tsc --watch greeter.ts (This will watch the file and transpile on save)
 
 : string is a type annotation, used to say what the intended type is
 of a variable
@@ -37,13 +37,18 @@ module Greetings {
         lastName: string;
     }
 
-    /* function takes an IPerson and returns a string, if we left out specifying the
-    it would be infered as the method does return a string */
+    /*
+        Function takes an IPerson and returns a string, if we left out specifying the
+        it would be infered as the method does return a string
+    */
     function greeter(person: IPerson): string {
         return `Hello, ${person.firstName} ${person.lastName}`;
     }
 
-    // as long as this has the same properties as IPerson, it can be treated as such
+    /* 
+        As long as this has the same properties as IPerson, it can be treated as such.
+        This is called "structural typing" as the type is infered from it's structure.
+    */
     var user = { firstName: "Jane", lastName: "Doe" };
 
     var joe = new Student("Joe", "Doe");
@@ -57,3 +62,21 @@ module Greetings {
 
 // need to fully qualify as we are not in the scope of Greetings
 var student = new Greetings.Student("Matthew", "Padden");
+
+class Types {
+    anyType: any; // This can be any type, similar to dynamic in c#
+    stringType: string;
+    numberType: number;
+
+    // This is using an optional parameter
+    hello(param?: string) {
+        if (param === "")
+            param = "NAME";
+
+        return `Hello ${param}`;
+    }
+}
+
+var types = new Types();
+types.hello();
+types.hello("Matthew");
