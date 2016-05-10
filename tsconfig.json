@@ -1,0 +1,16 @@
+﻿/*
+
+  This is the configuration file for TypeScript
+
+*/
+
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "sourceMap": false
+  },
+  "files": [
+    "greeter.ts"
+  ]
+}
